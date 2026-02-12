@@ -6,6 +6,7 @@ public class Benutzer {
     private int anzahlRichtig = 0;
     private int anzhalFalsch = 0;
     private double qoute = ( (anzahlRichtig+anzhalFalsch) / (anzahlRichtig) )*100; //Berechnet immer die Quote vom letzten vollendeten "Testen". Nach jedem Ende des Testvorgangs wird die Quote neu angezeigt.
+    //so brauchen wir keine quotenberechnung nach jedem mal lernen sondern wenn die richtigen und flaschen aktualisiert werden wird die quote einfach jedes mal neu gegettet und somit ist die quote aktuell
 
     //Weil jeder Benutzer seine eigenen Karteikartensets hat und aber auch 3 Default sets
     private Karteikartenset[] kts = new Karteikartenset[20]; //Jeder User kann 20 Sets erstellen
@@ -21,18 +22,16 @@ public class Benutzer {
         setPw("User");
     }
 
-    public boolean ktsHinzufuegen(Karteikartenset neu) throws Exception {
+    public void ktsHinzufuegen(Karteikartenset neu) throws Exception {
         if(neu != null) {
             for(int i = 0; i < kts.length; i ++){
                 if (kts[i] == null){
                     kts[i] = neu;
-                    return true;
                 }
             }
         }else{
             throw new Exception("Maximale Anzahl an Karteikartensets erreicht (max 20 möglich)");
         }
-        return false;
     }
 
     public void setName(String name) {
@@ -56,12 +55,6 @@ public class Benutzer {
     public void setAnzhalFalsch(int anzhalFalsch) {
         if(anzhalFalsch >= 0){
             this.anzhalFalsch = anzhalFalsch;
-        }
-    }
-
-    public void setQoute(double qoute) {
-        if(qoute >= 0){
-            this.qoute = qoute;
         }
     }
 
