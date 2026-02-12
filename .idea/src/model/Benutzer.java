@@ -21,7 +21,7 @@ public class Benutzer {
         setPw("User");
     }
 
-    public boolean ktsHinzufuegen(Karteikartenset neu){
+    public boolean ktsHinzufuegen(Karteikartenset neu) throws Exception {
         if(neu != null) {
             for(int i = 0; i < kts.length; i ++){
                 if (kts[i] == null){
@@ -29,6 +29,8 @@ public class Benutzer {
                     return true;
                 }
             }
+        }else{
+            throw new Exception("Maximale Anzahl an Karteikartensets erreicht (max 20 möglich)");
         }
         return false;
     }
