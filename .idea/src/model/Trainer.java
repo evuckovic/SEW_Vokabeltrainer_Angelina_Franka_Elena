@@ -2,9 +2,14 @@ package model;
 
 public class Trainer {
     private Benutzer[] benutzer;
-    private Karteikartenset[] ks;
+    private Karteikartenset[] kts;
 
-    public void lernen(){
+    public Trainer(Benutzer[] b, Karteikartenset[] k) {
+        setBenutzer(b);
+        setKts(k);
+    }
+
+    public void lernen(String ktsName){
 
     }
     public int[] testen(){
@@ -13,4 +18,25 @@ public class Trainer {
     public void spielen(){
 
     }
+
+    public Benutzer[] getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer[] b) {
+        if(b != null){
+            benutzer = b;
+        }
+    }
+
+    public Karteikartenset[] getKts() {
+        return kts;
+    }
+
+    public void setKts(Karteikartenset[] k) {
+        if(k != null){
+            kts = k;
+        }
+    }
+
 }
