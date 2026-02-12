@@ -21,11 +21,11 @@ public class Benutzer {
         setPw("User");
     }
 
-    public boolean ktsHinzufuegen(Karteikartenset kts){
-        if(kts != null) {
-            for(int i = 0; i < this.kts.length; i ++){
-                if (this.kts[i] == null){
-                    this.kts[i] = kts;
+    public boolean ktsHinzufuegen(Karteikartenset neu){
+        if(neu != null) {
+            for(int i = 0; i < kts.length; i ++){
+                if (kts[i] == null){
+                    kts[i] = neu;
                     return true;
                 }
             }
