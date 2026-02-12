@@ -7,14 +7,30 @@ public class Benutzer {
     private int anzhalFalsch = 0;
     private double qoute = ( (anzahlRichtig+anzhalFalsch) / (anzahlRichtig) )*100; //Berechnet immer die Quote vom letzten vollendeten "Testen". Nach jedem Ende des Testvorgangs wird die Quote neu angezeigt.
 
+    //Weil jeder Benutzer seine eigenen Karteikartensets hat und aber auch 3 Default sets
+    private Karteikartenset[] kts = new Karteikartenset[20]; //Jeder User kann 20 Sets erstellen
+
     public Benutzer(String name, String pw) {
         setName(name);
         setPw(pw);
+
     }
 
     public Benutzer() {
         setName("User");
         setPw("User");
+    }
+
+    public boolean ktsHinzufuegen(Karteikartenset kts){
+        if(kts != null) {
+            for(int i = 0; i < this.kts.length; i ++){
+                if (this.kts[i] == null){
+                    this.kts[i] = kts;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void setName(String name) {

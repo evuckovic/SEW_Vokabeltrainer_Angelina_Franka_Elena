@@ -1,14 +1,17 @@
 package model;
 
 public class Karteikarte{
-    private String[] vokabelpaar; //immer in dem Format gespeichert: deutsch, englisch
-    private String name; //der Name der Karteikarte ist immer der Deutsche Begriff
+    private String[] vokabelpaar = new String[2];  //immer in dem Format gespeichert: deutsch, englisch
+
+    public Karteikarte(String[] vokabelpaar, String name) {
+        this.vokabelpaar = vokabelpaar;
+    }
 
     public String[] getVokabelpaar() {
         return vokabelpaar;
     }
 
-    public String getName() {
-        return name;
+    public void setVokabelpaar(String[] vokabelpaar) {
+        this.vokabelpaar = vokabelpaar;
     }
 }
