@@ -3,12 +3,18 @@ package model;
 public class Benutzer {
     private String name = "DefaultName";
     private String pw;
-    private int anzahlRichtig;
-    private int anzhalFalsch;
+    private int anzahlRichtig = 0;
+    private int anzhalFalsch = 0;
     private double qoute = ( (anzahlRichtig+anzhalFalsch) / (anzahlRichtig) )*100; //Berechnet immer die Quote vom letzten vollendeten "Testen". Nach jedem Ende des Testvorgangs wird die Quote neu angezeigt.
 
-    public Benutzer(String name, String pw, int anzahlRichtig, int anzhalFalsch) {
-        this.name = name;
+    public Benutzer(String name, String pw) {
+        setName(name);
+        setPw(pw);
+    }
+
+    public Benutzer() {
+        setName("User");
+        setPw("User");
     }
 
     public void setName(String name) {
