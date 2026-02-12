@@ -18,8 +18,8 @@ public class Benutzer {
     }
 
     public Benutzer() {
-        setName("User");
-        setPw("User");
+        setName("AutomatischerBenutzer");
+        setPw("AutomatischerBenutzer");
     }
 
     public void ktsHinzufuegen(Karteikartenset neu) throws Exception {
