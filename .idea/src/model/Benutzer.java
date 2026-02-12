@@ -1,7 +1,7 @@
 package model;
 
 public class Benutzer {
-    private String name;
+    private String name = "DefaultName";
     private String pw;
     private int anzahlRichtig;
     private int anzhalFalsch;
@@ -12,23 +12,33 @@ public class Benutzer {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(!name.isEmpty() && name != null) {
+            this.name = name;
+        }
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
-    }
+        if(!pw.isEmpty() && pw != null) {
+            this.pw = pw;
+        }    }
 
     public void setAnzahlRichtig(int anzahlRichtig) {
-        this.anzahlRichtig = anzahlRichtig;
+        if(anzahlRichtig >= 0){
+            this.anzahlRichtig = anzahlRichtig;
+        }
+        //else fehöer - exception
     }
 
     public void setAnzhalFalsch(int anzhalFalsch) {
-        this.anzhalFalsch = anzhalFalsch;
+        if(anzhalFalsch >= 0){
+            this.anzhalFalsch = anzhalFalsch;
+        }
     }
 
     public void setQoute(double qoute) {
-        this.qoute = qoute;
+        if(qoute >= 0){
+            this.qoute = qoute;
+        }
     }
 
     public String getName() {
