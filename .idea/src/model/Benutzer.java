@@ -122,4 +122,6 @@ public class Benutzer {
     public double getQoute() {
         return qoute;
     }
+
+
 }
