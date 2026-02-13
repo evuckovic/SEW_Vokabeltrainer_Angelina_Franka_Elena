@@ -8,6 +8,7 @@ public class MainFrame extends JFrame {
     private CardLayout cardLayout;
     // enthält alle Seiten(=Panels)
     private JPanel mainPanel;
+    private LernUebersichtPanel lernPanel;
 
     //------------Konstruktor-------------
     public MainFrame() {
@@ -20,7 +21,8 @@ public class MainFrame extends JFrame {
         RegisterPanel registerPanel = new RegisterPanel(this);
         LernUebersichtPanel lernPanel = new LernUebersichtPanel(this);
         SetErstellenPanel setErstellenPanel = new SetErstellenPanel(this);
-
+        lernPanel = new LernUebersichtPanel(this);
+        SetErstellenPanel setPanel = new SetErstellenPanel(this);
 
         // Seiten zum mainPanel hinzufügen
         mainPanel.add(loginPanel, "LOGIN");
@@ -28,6 +30,8 @@ public class MainFrame extends JFrame {
         mainPanel.add(startseitePanel, "START");
         mainPanel.add(lernPanel, "LERNEN");
         mainPanel.add(setErstellenPanel, "SET_ERSTELLEN");
+        mainPanel.add(lernPanel, "LERNEN");
+        mainPanel.add(setPanel, "SET_ERSTELLEN");
 
         // mainPanel dem Fenster hinzufügen
         add(mainPanel);
@@ -46,4 +50,9 @@ public class MainFrame extends JFrame {
     public void showPanel(String name) {
         cardLayout.show(mainPanel, name);
     }
+
+    public LernUebersichtPanel getLernPanel() {
+        return lernPanel;
+    }
+
 }
