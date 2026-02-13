@@ -14,6 +14,10 @@ public class Karteikarte{
         setEnglisch(englsich);
     }
 
+    public Karteikarte(){
+
+    }
+
     public String[] getVokabelpaar() {
         return vokabelpaar;
     }
