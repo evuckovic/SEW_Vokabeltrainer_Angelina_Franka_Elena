@@ -5,8 +5,13 @@ public class Karteikarte{
     //Bild zur Karteikarte als Link aus dem Internet
 
 
-    public Karteikarte(String[] vokabelpaar, String name) {
-        this.vokabelpaar = vokabelpaar;
+    public Karteikarte(String[] vokabelpaar) throws Exception {
+        setVokabelpaar(vokabelpaar);
+    }
+
+    public Karteikarte(String deutsch, String englsich) throws Exception {
+        setDeutsch(deutsch);
+        setEnglisch(englsich);
     }
 
     public String[] getVokabelpaar() {
