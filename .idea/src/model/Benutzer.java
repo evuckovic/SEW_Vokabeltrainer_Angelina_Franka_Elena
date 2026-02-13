@@ -24,7 +24,7 @@ public class Benutzer {
     }
 
     private void erzeugeStandardSets() throws Exception {
-        // 1. Economics Set (10 Vokabeln)
+        // 1. Economics Set
         Karteikartenset economics = new Karteikartenset("Economics");
         economics.karteikarteHinzufuegen(new Karteikarte("Wirtschaft", "Economics"));
         economics.karteikarteHinzufuegen(new Karteikarte("Angebot", "Supply"));
@@ -38,7 +38,7 @@ public class Benutzer {
         economics.karteikarteHinzufuegen(new Karteikarte("Aktien", "Stocks"));
         ktsHinzufuegen(economics);
 
-        // 2. Food Set (10 Vokabeln)
+        // 2. Food Set
         Karteikartenset food = new Karteikartenset("Food");
         food.karteikarteHinzufuegen(new Karteikarte("Essen", "Food"));
         food.karteikarteHinzufuegen(new Karteikarte("Frühstück", "Breakfast"));
@@ -52,7 +52,7 @@ public class Benutzer {
         food.karteikarteHinzufuegen(new Karteikarte("Zutaten", "Ingredients"));
         ktsHinzufuegen(food);
 
-        // 3. Leisure Set (10 Vokabeln)
+        // 3. Leisure Set
         Karteikartenset leisure = new Karteikartenset("Leisure");
         leisure.karteikarteHinzufuegen(new Karteikarte("Freizeit", "Leisure"));
         leisure.karteikarteHinzufuegen(new Karteikarte("Hobby", "Hobby"));
