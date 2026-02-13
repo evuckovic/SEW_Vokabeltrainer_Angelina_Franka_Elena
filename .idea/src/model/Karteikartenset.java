@@ -5,15 +5,15 @@ public class Karteikartenset {
     private final  Karteikarte[] kt = new Karteikarte[arraygröße];
     private String name = "DefaultName";
 
-    public Karteikartenset(String name) {
+    public Karteikartenset(String name) throws Exception {
         setName(name);
     }
 
-    public Karteikartenset() {
+    public Karteikartenset() throws Exception {
         setName("AutomatischerKarteikartensetName");
     }
 
-    public void karteikarteHinzufeuegen(Karteikarte neu) throws Exception {
+    public void karteikarteHinzufuegen(Karteikarte neu) throws Exception {
         if(neu != null){
             for(int i = 0; i < kt.length; i ++){
                 if (kt[i] == null){
