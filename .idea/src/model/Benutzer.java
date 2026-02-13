@@ -11,15 +11,33 @@ public class Benutzer {
     //Weil jeder Benutzer seine eigenen Karteikartensets hat und aber auch 3 Default sets
     private Karteikartenset[] kts = new Karteikartenset[20]; //Jeder User kann 20 Sets erstellen
 
-    public Benutzer(String name, String pw) {
+    public Benutzer(String name, String pw) throws Exception {
         setName(name);
         setPw(pw);
-
+        erzeugeStandardSets();
     }
 
-    public Benutzer() {
+    public Benutzer() throws Exception {
         setName("AutomatischerBenutzer");
         setPw("AutomatischerBenutzer");
+        erzeugeStandardSets();
+    }
+
+    private void erzeugeStandardSets() throws Exception {
+        // 1. Economics Set
+        Karteikartenset economics = new Karteikartenset("Economics");
+        economics.karteikarteHinzufuegen(new Karteikarte("Wirtschaft", "Economics"));
+        ktsHinzufuegen(economics);
+
+        // 2. Food Set
+        Karteikartenset food = new Karteikartenset("Food");
+        food.karteikarteHinzufuegen(new Karteikarte("Essen", "Food"));
+        ktsHinzufuegen(food);
+
+        // 3. Leisure Set
+        Karteikartenset leisure = new Karteikartenset("Leisure");
+        leisure.karteikarteHinzufuegen(new Karteikarte("Freizeit", "Leisure"));
+        ktsHinzufuegen(leisure);
     }
 
     public void ktsHinzufuegen(Karteikartenset neu) throws Exception {
