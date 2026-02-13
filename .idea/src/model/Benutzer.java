@@ -24,19 +24,46 @@ public class Benutzer {
     }
 
     private void erzeugeStandardSets() throws Exception {
-        // 1. Economics Set
+        // 1. Economics Set (10 Vokabeln)
         Karteikartenset economics = new Karteikartenset("Economics");
         economics.karteikarteHinzufuegen(new Karteikarte("Wirtschaft", "Economics"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Angebot", "Supply"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Nachfrage", "Demand"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Markt", "Market"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Gewinn", "Profit"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Verlust", "Loss"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Steuer", "Tax"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Währung", "Currency"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Zinsen", "Interest"));
+        economics.karteikarteHinzufuegen(new Karteikarte("Aktien", "Stocks"));
         ktsHinzufuegen(economics);
 
-        // 2. Food Set
+        // 2. Food Set (10 Vokabeln)
         Karteikartenset food = new Karteikartenset("Food");
         food.karteikarteHinzufuegen(new Karteikarte("Essen", "Food"));
+        food.karteikarteHinzufuegen(new Karteikarte("Frühstück", "Breakfast"));
+        food.karteikarteHinzufuegen(new Karteikarte("Mittagessen", "Lunch"));
+        food.karteikarteHinzufuegen(new Karteikarte("Abendessen", "Dinner"));
+        food.karteikarteHinzufuegen(new Karteikarte("Gemüse", "Vegetables"));
+        food.karteikarteHinzufuegen(new Karteikarte("Obst", "Fruit"));
+        food.karteikarteHinzufuegen(new Karteikarte("Fleisch", "Meat"));
+        food.karteikarteHinzufuegen(new Karteikarte("Getränk", "Beverage"));
+        food.karteikarteHinzufuegen(new Karteikarte("Rezept", "Recipe"));
+        food.karteikarteHinzufuegen(new Karteikarte("Zutaten", "Ingredients"));
         ktsHinzufuegen(food);
 
-        // 3. Leisure Set
+        // 3. Leisure Set (10 Vokabeln)
         Karteikartenset leisure = new Karteikartenset("Leisure");
         leisure.karteikarteHinzufuegen(new Karteikarte("Freizeit", "Leisure"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Hobby", "Hobby"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Urlaub", "Vacation"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Sport", "Sports"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Unterhaltung", "Entertainment"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Reisen", "Traveling"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Ausflug", "Excursion"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Entspannung", "Relaxation"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Verein", "Club"));
+        leisure.karteikarteHinzufuegen(new Karteikarte("Kino", "Cinema"));
         ktsHinzufuegen(leisure);
     }
 
