@@ -55,5 +55,22 @@ public class SetErstellenPanel extends JPanel {
                 mainFrame.showPanel("LERNEN");
             }
         });
+
+        speichernButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String setName = setNameField.getText();
+
+                if (!setName.equals("")) {
+
+                    // Neues Set zum Dropdown hinzufügen
+                    mainFrame.getLernPanel().addSet(setName);
+                }
+
+                // Zurück zur Lern-Übersicht
+                mainFrame.showPanel("LERNEN");
+            }
+        });
+
     }
 }
