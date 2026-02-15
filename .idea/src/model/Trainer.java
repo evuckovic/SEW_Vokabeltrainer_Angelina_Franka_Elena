@@ -21,12 +21,13 @@ public class Trainer {
                 try {
                     // Hole die Karteikarte über den Index
                     Karteikarte k = kts[i].getKarteikarte(kartenIndex);
-                    if (k != null) {
-                        // Index 0 des Vokabelpaars ist immer Deutsch
+                    // Sicherstellen, dass die Karte an diesem Index existiert
+                    if (k != null && k.getVokabelpaar() != null) {
+                        // Index 0 des Vokabelpaars ist Deutsch
                         return k.getVokabelpaar()[0];
                     }
                 } catch (Exception e) {
-                    return "Index nicht gefunden";
+                    return "Karte an diesem Index nicht gefunden";
                 }
             }
         }
@@ -53,21 +54,24 @@ public class Trainer {
         for (int i = 0; i < kts.length; i++) {
             if (kts[i] != null && kts[i].getName().equals(setName)) {
 
-                // 3. Karte im Set suchen, die dem englischen Wort entspricht (max 10 Karten laut Karteikartenset)
+                // 3. Karte im Set suchen, die dem englischen Wort entspricht
+                // Wir nutzen 10, da dies die feste arraygröße im Karteikartenset ist
                 for (int j = 0; j < 10; j++) {
                     try {
                         Karteikarte k = kts[i].getKarteikarte(j);
-                        if (k != null && k.getVokabelpaar()[1].equals(englischWort)) {
+
+                        // Prüfen, ob Karte existiert und ob das englische Wort (Index 1) übereinstimmt
+                        if (k != null && k.getVokabelpaar()[1].equalsIgnoreCase(englischWort)) {
 
                             String korrekteAntwort = k.getVokabelpaar()[0];
 
                             // Vergleich der Eingabe (ignoriert Groß-/Kleinschreibung)
-                            if (benutzerEingabe.equalsIgnoreCase(korrekteAntwort)) {
+                            if (benutzerEingabe != null && benutzerEingabe.equalsIgnoreCase(korrekteAntwort)) {
                                 b.setAnzahlRichtig(b.getAnzahlRichtig() + 1);
                                 return true;
                             } else {
                                 b.setAnzhalFalsch(b.getAnzhalFalsch() + 1);
-                                // Fehlermeldung ausgeben
+                                // Fehlermeldung mit JOptionPane
                                 JOptionPane.showMessageDialog(null,
                                         "Leider falsch! Die richtige Antwort für '" + englischWort + "' ist: " + korrekteAntwort,
                                         "Falsche Antwort",
@@ -76,7 +80,7 @@ public class Trainer {
                             }
                         }
                     } catch (Exception e) {
-                        // Karte an diesem Index existiert nicht, Schleife geht weiter
+                        // Falls ein Index-Fehler auftritt, ignorieren wir diesen Slot und suchen weiter
                     }
                 }
             }
@@ -85,19 +89,23 @@ public class Trainer {
     }
 
     /**
-     * Wählt eine zufällige Vokabel aus allen verfügbaren Sets aus.
+     * Wählt eine einfache Vokabel zum Starten aus.
      */
     public void spielen() {
-        // Einfache Logik: Wähle das erste verfügbare Set und die erste Karte
+        // Prüfen, ob überhaupt Sets und Karten vorhanden sind
         if (kts != null && kts.length > 0 && kts[0] != null) {
             try {
                 Karteikarte k = kts[0].getKarteikarte(0);
-                JOptionPane.showMessageDialog(null, "Spiel-Modus Start! Übersetze: " + k.getVokabelpaar()[1]);
+                if (k != null) {
+                    JOptionPane.showMessageDialog(null, "Spiel-Modus Start! Übersetze: " + k.getVokabelpaar()[1]);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Das erste Set ist leer.");
+                }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Keine Karten zum Spielen vorhanden.");
+                JOptionPane.showMessageDialog(null, "Fehler beim Laden der Spieldaten.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Keine Sets vorhanden.");
+            JOptionPane.showMessageDialog(null, "Keine Karteikartensets zum Spielen verfügbar.");
         }
     }
 
