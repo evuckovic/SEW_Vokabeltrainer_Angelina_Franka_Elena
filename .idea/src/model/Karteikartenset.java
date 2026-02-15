@@ -1,32 +1,32 @@
 package model;
 
 public class Karteikartenset {
-    private final int arraygröße = 10; //Jedes Karteikartenset hat maximal 10 Karteikarten
-    private final  Karteikarte[] kt = new Karteikarte[arraygröße];
+    private final int arraygröße = 10;
+    private final Karteikarte[] kt = new Karteikarte[arraygröße];
     private String name = "DefaultName";
 
-    public Karteikartenset(String name) throws Exception {
+    public Karteikartenset(String name) {
         setName(name);
     }
 
-    public Karteikartenset() throws Exception {
+    public Karteikartenset() {
         setName("AutomatischerKarteikartensetName");
     }
 
     public void karteikarteHinzufuegen(Karteikarte neu) throws Exception {
-        if(neu != null){
-            for(int i = 0; i < kt.length; i ++){
-                if (kt[i] == null){
+        if (neu != null) {
+            for (int i = 0; i < kt.length; i++) {
+                if (kt[i] == null) {
                     kt[i] = neu;
+                    return; // Beendet die Schleife, sobald ein Platz gefunden wurde
                 }
             }
-        }else{
-            throw new Exception("Maximale Anzahl an Karteikarten im Set erreicht (max 10 möglich)");
+            throw new Exception("Maximale Anzahl an Karteikarten erreicht (max 10).");
         }
     }
 
     public void setName(String name) {
-        if(!name.isEmpty() && name != null) {
+        if (name != null && !name.isEmpty()) {
             this.name = name;
         }
     }
@@ -35,13 +35,10 @@ public class Karteikartenset {
         return name;
     }
 
-    public Karteikarte getKarteikarte(int index) throws Exception {
-        if(index >= 0 && index < this.arraygröße){
-            return kt[index]; // Kann null sein, wenn Platz leer ist
-        } else {
-            throw new Exception("Index außerhalb der Reichweite");
+    public Karteikarte getKarteikarte(int index) {
+        if (index >= 0 && index < arraygröße) {
+            return kt[index];
         }
+        return null;
     }
-
-
 }
