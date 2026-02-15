@@ -5,11 +5,7 @@ public class Benutzer {
     private String pw;
     private int anzahlRichtig = 0;
     private int anzhalFalsch = 0;
-    private double qoute = ( (anzahlRichtig+anzhalFalsch) / (anzahlRichtig) )*100; //Berechnet immer die Quote vom letzten vollendeten "Testen". Nach jedem Ende des Testvorgangs wird die Quote neu angezeigt.
-    //so brauchen wir keine quotenberechnung nach jedem mal lernen sondern wenn die richtigen und flaschen aktualisiert werden wird die quote einfach jedes mal neu gegettet und somit ist die quote aktuell
-
-    //Weil jeder Benutzer seine eigenen Karteikartensets hat und aber auch 3 Default sets
-    private Karteikartenset[] kts = new Karteikartenset[20]; //Jeder User kann 20 Sets erstellen
+    private Karteikartenset[] kts = new Karteikartenset[20];
 
     public Benutzer(String name, String pw) throws Exception {
         setName(name);
@@ -24,7 +20,6 @@ public class Benutzer {
     }
 
     private void erzeugeStandardSets() throws Exception {
-        // 1. Economics Set
         Karteikartenset economics = new Karteikartenset("Economics");
         economics.karteikarteHinzufuegen(new Karteikarte("Wirtschaft", "Economics"));
         economics.karteikarteHinzufuegen(new Karteikarte("Angebot", "Supply"));
@@ -38,7 +33,6 @@ public class Benutzer {
         economics.karteikarteHinzufuegen(new Karteikarte("Aktien", "Stocks"));
         ktsHinzufuegen(economics);
 
-        // 2. Food Set
         Karteikartenset food = new Karteikartenset("Food");
         food.karteikarteHinzufuegen(new Karteikarte("Essen", "Food"));
         food.karteikarteHinzufuegen(new Karteikarte("Frühstück", "Breakfast"));
@@ -52,7 +46,6 @@ public class Benutzer {
         food.karteikarteHinzufuegen(new Karteikarte("Zutaten", "Ingredients"));
         ktsHinzufuegen(food);
 
-        // 3. Leisure Set
         Karteikartenset leisure = new Karteikartenset("Leisure");
         leisure.karteikarteHinzufuegen(new Karteikarte("Freizeit", "Leisure"));
         leisure.karteikarteHinzufuegen(new Karteikarte("Hobby", "Hobby"));
@@ -68,60 +61,29 @@ public class Benutzer {
     }
 
     public void ktsHinzufuegen(Karteikartenset neu) throws Exception {
-        if(neu != null) {
-            for(int i = 0; i < kts.length; i ++){
-                if (kts[i] == null){
+        if (neu != null) {
+            for (int i = 0; i < kts.length; i++) {
+                if (kts[i] == null) {
                     kts[i] = neu;
+                    return; // Wichtig Nur einmal hinzufügen
                 }
             }
-        }else{
-            throw new Exception("Maximale Anzahl an Karteikartensets erreicht (max 20 möglich)");
         }
-    }
-
-    public void setName(String name) {
-        if(!name.isEmpty() && name != null) {
-            this.name = name;
-        }
-    }
-
-    public void setPw(String pw) {
-        if(!pw.isEmpty() && pw != null) {
-            this.pw = pw;
-        }    }
-
-    public void setAnzahlRichtig(int anzahlRichtig) {
-        if(anzahlRichtig >= 0){
-            this.anzahlRichtig = anzahlRichtig;
-        }
-        //else fehöer - exception
-    }
-
-    public void setAnzhalFalsch(int anzhalFalsch) {
-        if(anzhalFalsch >= 0){
-            this.anzhalFalsch = anzhalFalsch;
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public int getAnzahlRichtig() {
-        return anzahlRichtig;
-    }
-
-    public int getAnzhalFalsch() {
-        return anzhalFalsch;
     }
 
     public double getQoute() {
-        return qoute;
+        int gesamt = anzahlRichtig + anzhalFalsch;
+        if (gesamt == 0) return 0.0;
+        return ((double) anzahlRichtig / gesamt) * 100;
     }
 
-
+    public void setName(String name) { if (name != null && !name.isEmpty()) this.name = name; }
+    public void setPw(String pw) { if (pw != null && !pw.isEmpty()) this.pw = pw; }
+    public String getName() { return name; }
+    public String getPw() { return pw; }
+    public int getAnzahlRichtig() { return anzahlRichtig; }
+    public void setAnzahlRichtig(int r) { this.anzahlRichtig = r; }
+    public int getAnzhalFalsch() { return anzhalFalsch; }
+    public void setAnzhalFalsch(int f) { this.anzhalFalsch = f; }
+    public Karteikartenset[] getKts() { return kts; }
 }
