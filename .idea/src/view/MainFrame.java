@@ -9,6 +9,8 @@ public class MainFrame extends JFrame {
     // enthält alle Seiten(=Panels)
     private JPanel mainPanel;
     private LernUebersichtPanel lernPanel;
+    private TestPanel testPanel;
+    private MemoryPanel memoryPanel;
 
     //------------Konstruktor-------------
     public MainFrame() {
@@ -23,6 +25,9 @@ public class MainFrame extends JFrame {
         SetErstellenPanel setErstellenPanel = new SetErstellenPanel(this);
         lernPanel = new LernUebersichtPanel(this);
         SetErstellenPanel setPanel = new SetErstellenPanel(this);
+        testPanel = new TestPanel(this);
+        memoryPanel = new MemoryPanel(this);
+
 
         // Seiten zum mainPanel hinzufügen
         mainPanel.add(loginPanel, "LOGIN");
@@ -32,6 +37,8 @@ public class MainFrame extends JFrame {
         mainPanel.add(setErstellenPanel, "SET_ERSTELLEN");
         mainPanel.add(lernPanel, "LERNEN");
         mainPanel.add(setPanel, "SET_ERSTELLEN");
+        mainPanel.add(testPanel, "TEST");
+        mainPanel.add(memoryPanel, "SPIEL");
 
         // mainPanel dem Fenster hinzufügen
         add(mainPanel);
