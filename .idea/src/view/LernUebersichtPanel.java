@@ -35,8 +35,9 @@ public class LernUebersichtPanel extends JPanel {
         comboModel = new DefaultComboBoxModel<String>();
 
         // Beispiel-Sets
-        comboModel.addElement("Englisch");
-        comboModel.addElement("Deutsch");
+        comboModel.addElement("Food");
+        comboModel.addElement("Economics");
+        comboModel.addElement("Leisure");
 
         setDropdown = new JComboBox<String>(comboModel);
 
