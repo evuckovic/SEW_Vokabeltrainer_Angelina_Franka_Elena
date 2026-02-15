@@ -35,4 +35,12 @@ public class Karteikartenset {
         return name;
     }
 
+    public Karteikarte getKarteikarte(int index) throws Exception {
+        if(index > 0  || index > this.arraygröße){
+            return kt[index];
+        }else{
+            throw new Exception("Kartekarte an diesem Index Existiert nicht");
+        }
+    }
+
 }
