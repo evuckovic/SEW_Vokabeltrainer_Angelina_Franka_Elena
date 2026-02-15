@@ -1,21 +1,14 @@
 package model;
 
-public class Karteikarte{
-    private String[] vokabelpaar = new String[2];  //immer in dem Format gespeichert: deutsch, englisch
-    //Bild zur Karteikarte als Link aus dem Internet
+public class Karteikarte {
+    private String[] vokabelpaar = new String[2]; // Index 0: Deutsch, Index 1: Englisch
 
-
-    public Karteikarte(String[] vokabelpaar) throws Exception {
-        setVokabelpaar(vokabelpaar);
-    }
-
-    public Karteikarte(String deutsch, String englsich) throws Exception {
+    public Karteikarte(String deutsch, String englisch) throws Exception {
         setDeutsch(deutsch);
-        setEnglisch(englsich);
+        setEnglisch(englisch);
     }
 
-    public Karteikarte(){
-
+    public Karteikarte() {
     }
 
     public String[] getVokabelpaar() {
@@ -23,34 +16,18 @@ public class Karteikarte{
     }
 
     public void setDeutsch(String deutsch) throws Exception {
-        if(deutsch != null && !deutsch.isEmpty()){
-            if(this.vokabelpaar[0] == null){
-                this.vokabelpaar[0] = deutsch; //erste stelle im array ist immer deutsch
-            }else{
-                throw new Exception("Deutsches Wort wurde bereits festgelegt");
-            }
+        if (deutsch != null && !deutsch.isEmpty()) {
+            this.vokabelpaar[0] = deutsch;
+        } else {
+            throw new Exception("Deutsches Wort darf nicht leer sein.");
         }
     }
 
     public void setEnglisch(String englisch) throws Exception {
-        if(englisch != null && !englisch.isEmpty()){
-            if(this.vokabelpaar[1] == null){
-                this.vokabelpaar[1] = englisch; //zweite stelle im array ist immer englisch
-            }else{
-                throw new Exception("Englischer Begriff wurde schon festgelegt");
-            }
+        if (englisch != null && !englisch.isEmpty()) {
+            this.vokabelpaar[1] = englisch;
+        } else {
+            throw new Exception("Englischer Begriff darf nicht leer sein.");
         }
     }
-
-    public void setVokabelpaar(String[] vokabelpaar) throws Exception {
-        if(vokabelpaar != null){
-            for(int i = 0; i < 2; i++){
-                if(vokabelpaar[i] != null){
-                    throw new Exception("Vokabelpaar bereits fetgelegt");
-                }
-            }
-            this.vokabelpaar = vokabelpaar; //wenn alle null waren wird es übernommen
-        }
-    }
-
 }

@@ -120,7 +120,7 @@ public class Benutzer {
     }
 
     public double getQoute() {
-        return qoute;
+        return ( (anzahlRichtig+anzhalFalsch) / (anzahlRichtig) )*100;
     }
 
 
