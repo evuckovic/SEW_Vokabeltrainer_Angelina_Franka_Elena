@@ -2,83 +2,41 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
-// Panel zur Auswahl der Karteikartensets
 public class LernUebersichtPanel extends JPanel {
 
-    private MainFrame mainFrame;
+    private JComboBox<String> dropdown;
 
-    // Modell für das Dropdown
-    private DefaultComboBoxModel<String> comboModel;
-
-    // Dropdown-Menü
-    private JComboBox<String> setDropdown;
-
-    public LernUebersichtPanel(MainFrame mainFr) {
-
-        mainFrame = mainFr;
+    public LernUebersichtPanel(MainFrame mainFrame) {
 
         setLayout(new BorderLayout());
 
-        // Überschrift
-        JLabel title = new JLabel("Karteikartenset auswählen");
-        title.setFont(new Font("Arial", Font.BOLD, 18));
+        JLabel title = new JLabel("Set auswählen");
         title.setHorizontalAlignment(JLabel.CENTER);
 
+        dropdown = new JComboBox<>();
+
+        // Sets vom Controller holen
+        String[] sets = mainFrame.getController().getSetNamen();
+        for(String s : sets)
+            dropdown.addItem(s);
+
+        JButton starten = new JButton("Lernen starten");
+
         add(title, BorderLayout.NORTH);
+        add(dropdown, BorderLayout.CENTER);
+        add(starten, BorderLayout.SOUTH);
 
-        // =============================
-        // Dropdown erstellen
-        // =============================
-
-        comboModel = new DefaultComboBoxModel<String>();
-
-        // Beispiel-Sets
-        comboModel.addElement("Food");
-        comboModel.addElement("Economics");
-        comboModel.addElement("Leisure");
-
-        setDropdown = new JComboBox<String>(comboModel);
-
-        // =============================
-        // Buttons
-        // =============================
-
-        JButton startenButton = new JButton("Lernen starten");
-        JButton neuesSetButton = new JButton("Neues Set erstellen");
-
-        JPanel centerPanel = new JPanel(new GridLayout(3, 1, 10, 10));
-
-        centerPanel.add(setDropdown);
-        centerPanel.add(startenButton);
-        centerPanel.add(neuesSetButton);
-
-        add(centerPanel, BorderLayout.CENTER);
-
-        // Aktion: Lernen starten
-        startenButton.addActionListener(new ActionListener() {
+        starten.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 
-                String gewaehltesSet = (String) setDropdown.getSelectedItem();
-
-                // Hier könnte man später das Set übergeben
-                mainFrame.showPanel("LERNMODUS");
-            }
-        });
-
-        // Aktion: Neues Set erstellen
-        neuesSetButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainFrame.showPanel("SET_ERSTELLEN");
+                String set = (String) dropdown.getSelectedItem();
+                mainFrame.starteLernen(set);
             }
         });
     }
 
-    // =============================
-    // Methode um neues Set hinzuzufügen
-    // =============================
-    public void addSet(String setName) {
-        comboModel.addElement(setName);
+    public String getSelectedSet() {
+        return (String) dropdown.getSelectedItem();
     }
 }
