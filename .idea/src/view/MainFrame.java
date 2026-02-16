@@ -1,65 +1,67 @@
 package view;
+
+import controller.TrainerController;
+
 import javax.swing.*;
 import java.awt.*;
-// Ist das hauptfenster des Programms
-public class MainFrame extends JFrame {
-    //------------Attribute-------------
-    //Cardlayout damit wir mehrere seiten verwalten können
-    private CardLayout cardLayout;
-    // enthält alle Seiten(=Panels)
-    private JPanel mainPanel;
-    private LernUebersichtPanel lernPanel;
-    private TestPanel testPanel;
-    private MemoryPanel memoryPanel;
 
-    //------------Konstruktor-------------
-    public MainFrame() {
+public class MainFrame extends JFrame {
+
+    private CardLayout cardLayout;
+    private JPanel mainPanel;
+    private LernPanel lernPanel;
+
+    private TrainerController controller;
+
+    private LernUebersichtPanel lernPanel;
+
+    public MainFrame() throws Exception {
+
+        controller = new TrainerController();
+
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        //Die einzelnen Seiten erstellen
-        LoginPanel loginPanel= new LoginPanel(this);
-        StartseitePanel startseitePanel=new StartseitePanel(this);
-        RegisterPanel registerPanel = new RegisterPanel(this);
-        LernUebersichtPanel lernPanel = new LernUebersichtPanel(this);
-        SetErstellenPanel setErstellenPanel = new SetErstellenPanel(this);
+        LoginPanel loginPanel = new LoginPanel(this);
+        StartseitePanel startseitePanel = new StartseitePanel(this);
         lernPanel = new LernUebersichtPanel(this);
-        SetErstellenPanel setPanel = new SetErstellenPanel(this);
-        testPanel = new TestPanel(this);
-        memoryPanel = new MemoryPanel(this);
+        TestPanel testPanel = new TestPanel(this);
+        MemoryPanel memoryPanel = new MemoryPanel(this);
+        lernPanel = new LernPanel(this);
 
-
-        // Seiten zum mainPanel hinzufügen
+        mainPanel.add(lernPanel, "LERNEN_START");
         mainPanel.add(loginPanel, "LOGIN");
-        mainPanel.add(registerPanel, "REGISTER");
         mainPanel.add(startseitePanel, "START");
         mainPanel.add(lernPanel, "LERNEN");
-        mainPanel.add(setErstellenPanel, "SET_ERSTELLEN");
-        mainPanel.add(lernPanel, "LERNEN");
-        mainPanel.add(setPanel, "SET_ERSTELLEN");
         mainPanel.add(testPanel, "TEST");
         mainPanel.add(memoryPanel, "SPIEL");
 
-        // mainPanel dem Fenster hinzufügen
         add(mainPanel);
 
-        // Fenstereinstellungen
         setTitle("Vokabeltrainer");
         setSize(500, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Fenster zentrieren
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setVisible(true);
 
-        // Startseite beim Programmstart anzeigen
         cardLayout.show(mainPanel, "LOGIN");
     }
-    // Methode zum Wechseln der Seiten
+
     public void showPanel(String name) {
         cardLayout.show(mainPanel, name);
     }
 
+    public TrainerController getController() {
+        return controller;
+    }
+
     public LernUebersichtPanel getLernPanel() {
         return lernPanel;
+    }
+
+    public void starteLernen(String setName) {
+        lernPanel.starteLernen(setName);
+        showPanel("LERNEN_START");
     }
 
 }
