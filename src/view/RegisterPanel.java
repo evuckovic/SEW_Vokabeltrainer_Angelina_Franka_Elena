@@ -70,5 +70,29 @@ public class RegisterPanel extends JPanel {
                 mainFrame.showPanel("LOGIN");
             }
         });
+
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                String username = usernameField.getText();
+                String pw = new String(passwordField.getPassword());
+                String confirm = new String(confirmPasswordField.getPassword());
+
+                if (!pw.equals(confirm)) {
+                    JOptionPane.showMessageDialog(null, "Passwörter stimmen nicht überein!");
+                    return;
+                }
+
+                boolean ok = mainFrame.getController().registrieren(username, pw);
+
+                if (ok) {
+                    JOptionPane.showMessageDialog(null, "Registrierung erfolgreich!");
+                    mainFrame.showPanel("START");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Registrierung fehlgeschlagen!");
+                }
+            }
+        });
+
     }
 }
