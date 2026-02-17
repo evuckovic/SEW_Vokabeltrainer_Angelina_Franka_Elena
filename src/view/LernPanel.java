@@ -70,7 +70,8 @@ public class LernPanel extends JPanel {
         } else {
             // Englisch holen (über Controller erweitern falls nötig)
             String englisch = mainFrame.getController()
-                    .getDeutsch(aktuellesSet, index);
+                    .getEnglisch(aktuellesSet, index);
+
             karteLabel.setText(englisch);
         }
     }
@@ -81,11 +82,25 @@ public class LernPanel extends JPanel {
         zeigeKarte();
     }
 
+
+
     private void naechsteKarte() {
 
         index++;
         deutschSeite = true;
 
+        String test = mainFrame.getController()
+                .getDeutsch(aktuellesSet, index);
+
+        if (test.equals("Set nicht gefunden") ||
+                test.equals("Karte an diesem Index nicht gefunden")) {
+
+            // Zurück zur Übersicht wenn fertig
+            mainFrame.showPanel("LERNEN");
+            return;
+        }
+
         zeigeKarte();
     }
+
 }

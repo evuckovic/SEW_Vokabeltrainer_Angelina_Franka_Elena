@@ -9,11 +9,12 @@ public class MainFrame extends JFrame {
 
     private CardLayout cardLayout;
     private JPanel mainPanel;
-    private LernPanel lernPanel;
 
     private TrainerController controller;
 
-    private LernUebersichtPanel lernPanel;
+    // WICHTIG: Zwei verschiedene Variablen!
+    private LernUebersichtPanel lernUebersichtPanel;
+    private LernPanel lernPanel;
 
     public MainFrame() throws Exception {
 
@@ -24,17 +25,22 @@ public class MainFrame extends JFrame {
 
         LoginPanel loginPanel = new LoginPanel(this);
         StartseitePanel startseitePanel = new StartseitePanel(this);
-        lernPanel = new LernUebersichtPanel(this);
+        lernUebersichtPanel = new LernUebersichtPanel(this);
+        lernPanel = new LernPanel(this);
         TestPanel testPanel = new TestPanel(this);
         MemoryPanel memoryPanel = new MemoryPanel(this);
-        lernPanel = new LernPanel(this);
+        RegisterPanel registerPanel = new RegisterPanel(this);
 
-        mainPanel.add(lernPanel, "LERNEN_START");
+
+        // JEDES Panel nur EINMAL hinzufügen
         mainPanel.add(loginPanel, "LOGIN");
         mainPanel.add(startseitePanel, "START");
-        mainPanel.add(lernPanel, "LERNEN");
+        mainPanel.add(lernUebersichtPanel, "LERNEN");
+        mainPanel.add(lernPanel, "LERNEN_START");
         mainPanel.add(testPanel, "TEST");
         mainPanel.add(memoryPanel, "SPIEL");
+        mainPanel.add(registerPanel, "REGISTER");
+
 
         add(mainPanel);
 
@@ -55,13 +61,13 @@ public class MainFrame extends JFrame {
         return controller;
     }
 
-    public LernUebersichtPanel getLernPanel() {
-        return lernPanel;
-    }
-
+    // WICHTIG: Diese Methode startet das Lernen richtig
     public void starteLernen(String setName) {
         lernPanel.starteLernen(setName);
         showPanel("LERNEN_START");
+    }
+    public LernUebersichtPanel getLernUebersichtPanel() {
+        return lernUebersichtPanel;
     }
 
 }

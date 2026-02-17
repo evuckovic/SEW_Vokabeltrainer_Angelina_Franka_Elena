@@ -157,13 +157,17 @@ public class SetErstellenPanel extends JPanel {
                 if (!setName.equals("")) {
 
                     // Neues Set zum Dropdown hinzufügen
-                    mainFrame.getLernPanel().addSet(setName);
+                    mainFrame.getLernUebersichtPanel().addSet(setName);
+
                 }
 
                 // Zurück zur Lern-Übersicht
                 mainFrame.showPanel("LERNEN");
             }
         });
+
+
+
 
     }
 }
