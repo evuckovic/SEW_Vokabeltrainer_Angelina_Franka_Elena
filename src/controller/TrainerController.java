@@ -106,4 +106,14 @@ public class TrainerController {
 
         return false;
     }
+
+    public String getEnglisch(String setName, int index) {
+        return trainer.lernenEnglisch(setName, index);
+    }
+
+    public int getAnzahlKarten(String setName) {
+        return trainer.getAnzahlKarten(setName);
+    }
+
+
 }
